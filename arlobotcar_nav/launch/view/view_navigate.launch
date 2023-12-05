@@ -1,0 +1,4 @@
+<launch>
+      <!--@TODO change rviz for doing navigation tasks-->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find arlobot_description)/rviz/my_turtlebot3_navigation.rviz"/>
+</launch>

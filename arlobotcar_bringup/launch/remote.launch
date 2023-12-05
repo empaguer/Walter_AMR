@@ -1,0 +1,22 @@
+<launch>
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+    <node pkg="arlo_control_msgs" type="arlo_msg_controller_vel.py" name="arlo_msgs_control_node" output="screen" />
+    <!--Driver node for differential robots-->
+    <node pkg="differential_drive" type="twist_to_motors.py" name="twist_to_motors">
+        <rosparam param="base_width">0.393</rosparam>
+        <remap from="lwheel_vtarget" to="lwheel_vtarget" />
+        <remap from="rwheel_vtarget" to="rwheel_vtarget" />
+        <remap from="twist" to="cmd_vel" />
+    </node>
+    <!--Publish Odometry data-->
+
+  <include file="$(find arlobotcar_bringup)/launch/includes/description.launch.xml">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="50.0" />
+  </node>
+      <!--Node for arlobot movement, starts configuration for velocity messages using encoders-->
+    <node pkg="social_nav_tests" type="odom_publisher.py" name="odom_publisher" />
+</launch>

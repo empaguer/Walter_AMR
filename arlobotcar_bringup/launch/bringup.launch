@@ -1,0 +1,45 @@
+<launch>
+    <!-- SImulation Moddel-->
+    <arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find arlobot_description)/urdf/robot.urdf'" />
+    <param name="robot_description" command="$(arg urdf_file)"/>
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+        <param name="publish_frequency" type="double" value="50.0" />
+    </node>
+    <!--Node for arlobot movement, starts configuration for velocity messages using encoders-->
+    <node pkg="arlo_control_msgs" type="arlo_msg_controller_vel.py" name="arlo_msgs_control_node" output="screen" />
+    <!--Driver node for differential robots-->
+    <node pkg="differential_drive" type="twist_to_motors.py" name="twist_to_motors">
+        <rosparam param="base_width">0.393</rosparam>
+        <remap from="lwheel_vtarget" to="lwheel_vtarget" />
+        <remap from="rwheel_vtarget" to="rwheel_vtarget" />
+        <remap from="twist" to="cmd_vel" />
+    </node>
+    <!--Publish Odometry data-->
+    <node pkg="social_nav_tests" type="odom_publisher.py" name="odom_publisher" />
+    <!-- TODO@ Implement if neccesary Kalman Data fusion with robot_lcoalization module (git) (param .yaml needed)-->
+    <!-- TODO@ Implement if neccesary Filter and fuse imu data with imu_filter_madgwick module (git)-->
+    <!-- Filter and fuse imu data -->
+    <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter_madgwick" output="screen">
+        <param name="fixed_frame" value="base_link"/>    <!-- Esto puede cambiar-->
+        <param name="use_mag" value="false"/>
+        <param name="publish_tf" value="false"/>
+        <param name="use_magnetic_field_msg" value="false"/>
+        <param name="world_frame" value="enu"/>
+        <param name="orientation_stddev" value="0.05"/>
+        <param name="angular_scale" value="1.03"/>
+        <remap from="/sub_mag" to="/mag/mag_raw"/>
+        <remap from="/pub_mag" to="/mag/mag_field"/>
+    </node>
+    <!-- Extended Kalman data fusion -->
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" output="screen">
+        <remap from="odometry/filtered" to="odom"/>
+        <remap from="/imu0" to="/imu/imu_data"/>
+        <remap from="/odom0" to="odom"/>
+        <param name="odom_frame" value="/odom"/>
+        <param name="world_frame" value="/odom"/>
+        <param name="base_link_frame" value="/base_footprint"/>
+        <rosparam command="load" file="$(find arlobotcar_bringup)/param/robot_localization.yaml"/>
+    </node>
+
+    <!-- TODO@ Implement if neccesary joy handle control with Joy module (ROS Official Driver)-->
+</launch>

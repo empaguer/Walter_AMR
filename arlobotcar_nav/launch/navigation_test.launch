@@ -1,0 +1,16 @@
+<launch>
+<!--Putting the rviz variable-->
+    <arg name="use_rviz" default="true"/>
+    <!--Node for arlobot movement, starts configuration for velocity messages using encoders-->
+    <arg name="map" default="my_map"/>
+    <!--Starting the map node, so it appears in Rviz, IMPORTANT MAP MUST BE IN MAPS/-->
+    <node name ="map_server" pkg="map_server" type="map_server" args="$(find arlobotcar_nav)/maps/$(arg map).yaml"/>
+    <!--Running amcl node for helping in location-->
+   <!--  <include file="$(find arlobotcar_nav)/launch/library/amcl.launch"/>-->
+    <!--Node for starting move launcher-->
+    <include file="$(find arlobotcar_nav)/launch/library/move_base_test.launch"/>
+    <!--Starting the rviz-->
+  <!--    <include file="$(find arlobotcar_nav)/launch/view/view_navigate.launch" if="$(arg use_rviz)"/>-->
+  <!-- Set initial pose -->
+ <!--  <node name="initial_pose_publisher" pkg="tf2_ros" type="static_transform_publisher" args="0 0 0 0 0 0 1 /map /base_link 10" />-->
+</launch>

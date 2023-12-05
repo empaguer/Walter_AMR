@@ -1,0 +1,48 @@
+DWAPlannerROS:
+  # Robot Configuration Parameters
+  max_vel_x: 0.15 #velocidad maxima del robot en x/ anterior: 0.35
+  min_vel_x: -0.15 #velocidad minima del robot en x/ anterior: -0.35
+
+  max_vel_y: 0.0 #velocidad maxima del robot en y
+  min_vel_y: 0.0 #velocidad minima del robot en y
+
+  # The velocity when robot is moving in a straight line
+  max_vel_trans: 0.20 # velocidad maxima de trasladacion [m/s]
+  min_vel_trans: 0.05 # velocidad minima de trasladacion [m/s]
+
+  max_vel_theta: 0.9 #velocidad de rotacion maxima/ anterior:1
+  min_vel_theta: 0.2 #velocidad de rotacion minima
+
+  acc_lim_x: 0.9 #limite de la aceleracion en x del robot [m/s2]/ anterior: 1
+  acc_lim_y: 0.0 #limite de la aceleracion en y del robot [m/s2]
+  acc_lim_theta: 0.6 #limite de la aceleracion del rotacion del robot [rad/s2]/ anterior 0.7
+
+  # Goal Tolerance Parametes, tolerancia de objetivos
+  xy_goal_tolerance: 0.1 #la tolerancia para el controlador en la distancia X y Y al lograr un objetivo [metros]
+  yaw_goal_tolerance: 0.2 #la tolerancia para el controlador en rotacion al lograr su objetivo [radianes]
+  latch_xy_goal_tolerance: false #cuando el robot llega a su meta, rotara en su lugar, valor predeterminado FALSO.
+
+  # Forward Simulation Parameters, simulacion de avance
+  sim_time: 1.5 #cantidad de tiempo para simular trayectorias [segundos]
+  vx_samples: 18 #numero de muestras a usar al explorar el espacio de velocidad en X/ anterior:20,18
+  vy_samples: 0 #numero de muestras a usar al explorar el espacio de velocidad en y
+  vth_samples: 40 #numero de muestras a usar al explorar el espacio de velocidad en theta/ anterior 40
+  controller_frequency: 10.0 #frecuencia a la que se llamara este controlador [Hz]
+
+
+  # Trajectory Scoring Parameters, puntuacion de trayectoria
+  path_distance_bias: 32.0 #valor de cuanto debe permanecer el controlador cerca de la ruta que se le dio.anterior 32
+  goal_distance_bias: 18.0 #valor de cuanto debe intentar el controlador para alcanzar su objetivo local, tambien controla la velocidad/anterior:20, 18
+  occdist_scale: 0.1 #valor de cuanto debe intentar el controlador para evitar obstaculos
+  forward_point_distance: 0.325 #distancia desde el punto central del robot para colocar un punto de puntuacion adicional [metros]
+  stop_time_buffer: 0.15 #la cantidad de tiempo que el robot debe deternerse antes de una colision para q una trayectoria se considere valida/anterior: 0.2
+  scaling_speed: 0.25 #velocidad a la que empieza a escalar la huella del robot [m/s]
+  max_scaling_factor: 0.2 #factor maximo para escalar la huella del robot.
+
+  # Oscillation Prevention Parameters, prevencion de oscilaciones
+  oscillation_reset_dist: 0.05 #distancia que debe recorrer el robot en metros antes de que se restablezacan las banderas de oscilacion.
+
+  # Debugging
+  publish_traj_pc: true
+  publish_cost_grid_pc: true
+  recovery_behavior_enbaled: False

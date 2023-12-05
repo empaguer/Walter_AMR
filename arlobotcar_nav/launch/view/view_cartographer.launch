@@ -1,0 +1,4 @@
+<launch>
+    <!-- rviz, not sure if tu put required = true -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find arlobot_description)/rviz/arlobot_uv_nav_pedsim.rviz"/>
+</launch>

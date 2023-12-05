@@ -1,0 +1,19 @@
+<launch>
+
+  <!-- Start move_base node -->
+  <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
+    <!-- Load the navigation parameters -->
+    <rosparam file="$(find social_nav_tests)/param/dwa_planner/move_base_params_test.yaml" command="load" />
+
+    <!-- Set the base controller type for a differential drive robot -->
+    <param name="base_global_planner" value="navfn/NavfnROS" />
+    <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS" />
+    
+    <!-- Other robot-specific parameters -->
+    <param name="base_global_planner_params/default_tolerance" value="0.1" />
+    <param name="base_local_planner_params/odom_topic" value="odom" />
+    <param name="base_local_planner_params/xy_goal_tolerance" value="0.2" />
+    <param name="base_local_planner_params/yaw_goal_tolerance" value="0.2" />
+  </node>
+
+</launch>

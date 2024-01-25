@@ -20,10 +20,14 @@ La funcionalidad de Walter trabaja con la versión de Ros Noetic, esta versión 
 Para poder utilizar y modificar parámetros del Robot, se debe tener buenas bases acerca de instalación de paquetería, Linux y sobretodo ROS, se recomienda fuertemente leer el curso introductorio de ROS impartido por FunPythonEc [Tutorial FuncPython][Funpython] , y también se recomienda fuertemente adquirir el curso: [Ros Essentials][Udemy] de Udemy.
 
 ### Set up Sistema Operativo
-1. Descargar Ubuntu e instalarlo
+1. Descargar Ubuntu e instalarlo.
+
 Descargar la versión Ubuntu 20.04 con el siguiente link [Image Ubuntu][Image].
-Ya una vez descargado, seguir guia de instalación [Guia Ubuntu][Guide]
-2. Instalar Ros Noetic
+
+Ya una vez descargado, seguir guia de instalación [Guia Ubuntu][Guide].
+
+2. Instalar Ros Noetic.
+
 Directamente seguir el tutorial: [Guia Instalación Ros Noetic][Noetic]
 
 ### Paquetes
@@ -98,6 +102,7 @@ El código de la consola debería ser:
 roslaunch arlobot_sim_navigation metodo_disponible map:=”nombre_mapa”
 ```
 Donde “nombre_mapa”es el nombre del mapa anteriormente grabado con el nodo cartographer_finisher, si se intenta poner un nombre_mapa no existentente, el nodo de navegación no funcionará.
+
 Con este nodo activo, se puede realizar tareas de navegación y localización, para correr el nodo de Walter Mesero se debe primeramente configurar la posición de las estaciones.
 Con el mapa de rviz visualizándose, utilizar la herramienta publish point para ver su ubicación relativa en el mapa, de ahí se obtiene la ubicación deseada del punto para realizar un movimiento.
 
@@ -170,7 +175,7 @@ rosrun arlobotcar_nav map_handler.py
 
 Con estos tópicos encendidos, la aplicación Movil es capaz de intercambiar información por nodos para realizar operaciones de mapeo, movimiento, navegación y visualizar la cámara.
 ## Funcionalidades paqueterías especificas
-Si se desea saber la funcionalidad de los paquetes de este proyecto, revisar DEMOS.md
+Si se desea saber la funcionalidad de los paquetes de este proyecto, revisar [DEMOS.md][Demo]
 
 ## Contacto
 Si se tiene algún problema o duda, contactar a los correos: crisva212v@gmail.com ,  empaguer@espol.edu.ec
@@ -212,3 +217,4 @@ Si se tiene algún problema o duda, contactar a los correos: crisva212v@gmail.co
    [Carto]: <https://qiita.com/devemin/items/1723058cf3bac85aaa0b>
    [Realsense]: <https://github.com/IntelRealSense/realsense-ros>
    [Tutorial]: <https://www.youtube.com/watch?v=A3fJwTL2O4g>
+   [Demo]: <https://gitlab.com/espol_cidis/amr_walter/-/blob/main/DEMOS.md?ref_type=heads>

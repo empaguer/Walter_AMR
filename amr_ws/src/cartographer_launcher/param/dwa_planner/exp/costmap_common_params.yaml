@@ -1,0 +1,15 @@
+obstacle_range: 4.0
+raytrace_range: 5.0
+inf_is_valid: false
+robot_radius: 0.4 # - dont need a radius if we have a footprint.
+inflation_radius: 0.3
+# footprint: [[-15,0.26],[0.42,0.26],[0.42,-0.26],[-15,-0.26]] # Note Base_link is on top of the lidar and x axis is forwards
+
+observation_sources: scan
+scan:
+  data_type: LaserScan
+  topic: scan_filtered
+  marking: true
+  clearing: true
+
+map_type: costmap

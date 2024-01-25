@@ -1,0 +1,9 @@
+<launch>
+
+         <!-- this node spawn pedsim actors to gazebo once, then the plugin updates their pose -->  
+         <node pkg="pedsim_gazebo_plugin" type="pedsim_to_gazbo_world.py" name="spawn_pedsim_agents"  output="screen">
+         </node>
+
+
+</launch>
+

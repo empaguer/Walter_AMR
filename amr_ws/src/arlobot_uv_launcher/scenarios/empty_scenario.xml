@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<scenario>
+  <obstacle x1="1.075" x2="1.025" y1="6.375" y2="6.425"/>
+  <obstacle x1="1.125" x2="1.075" y1="6.375" y2="6.425"/>
+
+  <!-- WAYPOINTS -->
+  <!-- comedor # 1 x=3 y=26 -->
+  <waypoint id="comedor" x="-4" y="0.8" r="0.5"/>
+  <!-- office # 2 x=11 y=28 -->
+  <waypoint id="sala" x="1" y="0.8" r="0.5"/>
+
+  <waypoint id="entretenimiento" x="3" y="-2.5" r="0.5"/>
+
+  <!--robot-->
+  <agent x="0" y="0" n="1" dx="0" dy="0" type="2">
+    <addwaypoint id="comedor"/>
+    <addwaypoint id="sala"/>
+  </agent>
+
+  <!-- definicion de agentes -->
+  <!-- <agent x="-8" y="0" n="1" dx="0" dy="0" type="1">
+    <addwaypoint id="comedor"/>
+    <addwaypoint id="sala"/>
+    <addwaypoint id="entretenimiento"/>
+  </agent>
+
+  <agent x="-7" y="0" n="1" dx="0" dy="0" type="1">
+    <addwaypoint id="comedor"/>
+    <addwaypoint id="sala"/>
+  </agent> -->
+
+
+
+</scenario>

@@ -1,0 +1,40 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="map" default="cafeteria"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="move_forward_only" default="false"/>
+  <arg name="load_state_filename" default="$(find arlobot_sim_navigation)/maps/$(arg map).bag.pbstream"/>
+  <!-- Turtlebot3 -->
+  <include file="$(find arlobotcar_bringup)/launch/arlobot_remote.launch">
+  </include> 
+
+<arg name="configuration_basename" default="arlo_nav.lua" />
+    <node pkg="cartographer_ros" type="cartographer_node" name="cartographer_node" args="-configuration_directory $(find arlobot_sim_navigation)/config
+              -configuration_basename $(arg configuration_basename)        -load_state_filename $(arg load_state_filename)" output="screen">
+        <remap from="scan" to="scan_filtered" /> 
+        <!-- <remap from="odom" to="/t265/odom/sample" /> -->
+    </node>
+    <node pkg="cartographer_ros" type="cartographer_occupancy_grid_node" name="cartographer_occupancy_grid_node" args="-resolution 0.05">
+    <remap from ="map" to="newmap"/>
+    </node>
+      <!-- Map server -->
+    <node name ="map_server" pkg="map_server" type="map_server" args="$(find arlobot_sim_navigation)/maps/$(arg map).yaml" respawn="true">
+    <!--Modiciaciones-->
+   <!-- <remap from="map" to="mymap"/> -->
+    </node>
+     <include file="$(find arlobot_sim_gazebo)/launch/pedsim_scenario_launcher.launch"/>
+  <!-- AMCL -->
+  <include file="$(find arlobot_sim_navigation)/launch/amcl.launch">
+  <remap from="scan_topic" value="scan_filtered"/>
+  </include>
+  <!-- move_base -->
+  <include file="$(find arlobot_sim_navigation)/launch/move_base.launch"/>
+ <!--apriltag messages, change to a personal file-->
+   <include file="$(find apriltag_ros)/launch/continuous_detection.launch"/>
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find arlobot_sim_navigation)/rviz/arlobot_sim_navigation.rviz"/>
+  </group>
+
+</launch>

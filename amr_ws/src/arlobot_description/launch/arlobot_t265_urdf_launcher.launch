@@ -1,0 +1,8 @@
+<launch>
+
+  <arg name="urdf_file" default="xacro '$(find arlobot_description)/urdf/common_default_t265.urdf.xacro'"/>
+  <arg name="open_rviz" default="true"/>
+  <param name="robot_description" command="$(arg urdf_file)"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+</launch>

@@ -1,0 +1,197 @@
+<?xml version="1.0" ?>
+<robot name="ArloBot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find ArloBot_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find ArloBot_description)/urdf/ArloBot.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.0030523720356749316 1.9261577790248708e-05 0.11670714062507807" rpy="0 0 0"/>
+    <mass value="36.71339924368182"/>
+    <inertia ixx="0.535713" iyy="0.640269" izz="0.817401" ixy="4.7e-05" iyz="-5.3e-05" ixz="-0.004556"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ArloBot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ArloBot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_link_1">
+  <inertial>
+    <origin xyz="-7.835127523269004e-05 -0.0008286369457853882 0.00024348818317009024" rpy="0 0 0"/>
+    <mass value="0.12852805590489605"/>
+    <inertia ixx="0.000202" iyy="0.000387" izz="0.000201" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-1e-06 0.197739 -0.073907" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ArloBot_description/meshes/right_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-1e-06 0.197739 -0.073907" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ArloBot_description/meshes/right_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_link_1">
+  <inertial>
+    <origin xyz="7.860640618754334e-05 0.0008286658783607792 0.00024348818316921594" rpy="0 0 0"/>
+    <mass value="0.12852805590489605"/>
+    <inertia ixx="0.000202" iyy="0.000387" izz="0.000201" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-1e-06 -0.197738 -0.073907" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ArloBot_description/meshes/left_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-1e-06 -0.197738 -0.073907" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ArloBot_description/meshes/left_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="laser_link_1">
+  <inertial>
+    <origin xyz="0.012015087212080352 -0.00038542888607400025 0.016230630117325978" rpy="0 0 0"/>
+    <mass value="0.07101157937656205"/>
+    <inertia ixx="3e-05" iyy="6e-05" izz="7e-05" ixy="-1e-06" iyz="0.0" ixz="6e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="3.4e-05 7e-05 -0.197357" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ArloBot_description/meshes/laser_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="3.4e-05 7e-05 -0.197357" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ArloBot_description/meshes/laser_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="t265_link_1">
+  <inertial>
+    <origin xyz="-0.014772104868387564 0.0007652305927912085 0.008403288915241724" rpy="0 0 0"/>
+    <mass value="0.04138413887059607"/>
+    <inertia ixx="4.3e-05" iyy="1e-05" izz="4.8e-05" ixy="-0.0" iyz="-0.0" ixz="-2e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.22479 7e-05 -0.197457" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ArloBot_description/meshes/t265_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.22479 7e-05 -0.197457" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ArloBot_description/meshes/t265_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="robot_body_link_1">
+  <inertial>
+    <origin xyz="-0.002033282414455867 -5.237958272026579e-07 0.4351633630857458" rpy="0 0 0"/>
+    <mass value="41.73301322260555"/>
+    <inertia ixx="4.868723" iyy="4.855161" izz="0.83066" ixy="0.015711" iyz="-9e-06" ixz="0.023305"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0 3e-06 -0.295789" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ArloBot_description/meshes/robot_body_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0 3e-06 -0.295789" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ArloBot_description/meshes/robot_body_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="D435i_link_1">
+  <inertial>
+    <origin xyz="0.002982481256058017 -7.106919685042275e-06 -0.012633683861636102" rpy="0 0 0"/>
+    <mass value="0.062035228314442525"/>
+    <inertia ixx="4.3e-05" iyy="1.8e-05" izz="5.3e-05" ixy="0.0" iyz="-0.0" ixz="4e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.180642 3e-06 -1.010544" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ArloBot_description/meshes/D435i_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.180642 3e-06 -1.010544" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ArloBot_description/meshes/D435i_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+<link name="depth_camera_link">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+</link>
+<joint name="Revolute_26" type="continuous">
+  <origin xyz="1e-06 -0.197739 0.073907" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_link_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="Revolute_27" type="continuous">
+  <origin xyz="1e-06 0.197738 0.073907" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_link_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="Rigid 28" type="fixed">
+  <origin xyz="-3.4e-05 -7e-05 0.197357" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="laser_link_1"/>
+</joint>
+
+<joint name="Rigid 29" type="fixed">
+  <origin xyz="0.22479 -7e-05 0.197457" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="t265_link_1"/>
+</joint>
+
+<joint name="Rigid 30" type="fixed">
+  <origin xyz="0.0 -3e-06 0.295789" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="robot_body_link_1"/>
+</joint>
+
+<joint name="Rigid 31" type="fixed">
+  <origin xyz="0.180642 0.0 0.714755" rpy="0 0 0"/>
+  <parent link="robot_body_link_1"/>
+  <child link="D435i_link_1"/>
+</joint>
+<joint name="depth_camera_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
+        <parent link="D435i_link_1" />
+        <child link="depth_camera_link" />
+    </joint>
+</robot>

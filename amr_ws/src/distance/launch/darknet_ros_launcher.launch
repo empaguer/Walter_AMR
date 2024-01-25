@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- Use YOLOv3 -->
+
+  <arg name="network_param_file" default="$(find distance)/config/yolov3.yaml"/>
+  <arg name="ros_param_file" default="$(find distance)/config/ros.yaml"/>
+
+  <arg name="image" default="/d435/rgb/image_raw" />
+
+  <!-- Include main launch file -->
+
+  <include file="$(find darknet_ros)/launch/darknet_ros.launch">
+
+    <arg name="network_param_file" value="$(arg network_param_file)"/>
+    <arg name="ros_param_file" value="$(arg ros_param_file)"/>
+
+    <arg name="image" value="$(arg image)" />
+
+  </include>
+
+</launch> 

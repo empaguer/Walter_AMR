@@ -1,0 +1,2 @@
+float32 left_power
+float32 right_power

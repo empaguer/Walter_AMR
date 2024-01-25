@@ -1,0 +1,26 @@
+<launch>
+    <arg name="use_rviz" default="true"/>
+    <arg name="map" default="cidis"/>
+
+    <arg name="load_state_filename" default="$(find arlobotcar_nav)/maps/$(arg map).bag.pbstream"/>
+
+    <arg name="configuration_basename" default="arlo_nav.lua" />
+    <node pkg="cartographer_ros" type="cartographer_node" name="cartographer_node" args="-configuration_directory $(find arlobotcar_nav)/config
+              -configuration_basename $(arg configuration_basename)        -load_state_filename $(arg load_state_filename)" output="screen">
+         <remap from="scan" to="scan_filtered" /> 
+      <!--    <remap from="odom" to="/t265/odom/sample" /> -->
+    </node>
+    <!-- cartographer_occupancy_grid_node -->
+    <node pkg="cartographer_ros" type="cartographer_occupancy_grid_node" name="cartographer_occupancy_grid_node" args="-resolution 0.05" >
+    <remap from = "map" to="newmap"/>
+    </node>
+        <!-- Map Server -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find arlobotcar_nav)/maps/$(arg map).yaml" respawn="true">
+    </node>
+
+    <include file="$(find arlobotcar_nav)/launch/library/move_base.launch"/>
+    <include file="$(find arlobotcar_nav)/launch/library/amcl.launch"/>
+
+    <include file="$(find arlobotcar_nav)/launch/view/view_cartographer.launch" if="$(arg use_rviz)"/>
+
+</launch>

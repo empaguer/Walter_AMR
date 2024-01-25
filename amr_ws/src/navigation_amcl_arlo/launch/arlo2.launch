@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="map_file" default="$(find arlobotcar_nav)/maps/CIDISMAP.yaml"/>
+  <arg name="model" default="$(find arlobot_description)/urdf/mobile_robot.urdf.xacro"/>
+  
+
+ 
+<param name="robot_description" command="$(find xacro)/xacro --inorder $(find arlobot_description)/urdf/mobile_robot.urdf.xacro" />  
+    <node name="rosserial_node" pkg="rosserial_python" type="serial_node.py" output="screen">
+        <param name="port"
+         type="string" value="/dev/ttyUSB1"/>
+        <param name="baud" value="115200"/>
+    </node>
+    <node pkg="arlo_control_msgs" type="arlo_msg_controller_vel.py" name="arlo_msgs_control_node" output="screen" />
+    <!--Driver node for differential robots-->
+    <node pkg="differential_drive" type="twist_to_motors.py" name="twist_to_motors">
+        <rosparam param="base_width">0.393</rosparam>
+        <remap from="lwheel_vtarget" to="lwheel_vtarget" />
+        <remap from="rwheel_vtarget" to="rwheel_vtarget" />
+        <remap from="twist" to="cmd_vel" />
+    </node>
+    <!--Publish Odometry data-->
+    <node pkg="social_nav_tests" type="odom_publisher.py" name="odom_publisher" output="screen"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+  </node>
+  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find arlobot_description)/rviz/nav_config.rviz"/>
+  
+
+
+
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" >
+  </node>
+  
+    <include file="$(find arlobot_uv_launcher)/launch/rplidar.launch" />
+  <include file="$(find arlobotcar_nav)/launch/library/amcl1.launch" />
+  <include file="$(find arlobotcar_nav)/launch/library/move_base1.launch" /> 
+  
+</launch>

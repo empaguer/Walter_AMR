@@ -1,0 +1,32 @@
+# Mapping
+resolution: 0.05
+apply_filter: False
+add_max_ranges: False
+add_rays: False
+map_frame: "map"
+fixed_frame: "odom"
+robot_frame: "base_footprint"
+projection_2d: True
+odometry_topic: "/odom"
+
+minimum_range: 0.1 # -1 if no filtering is required
+rviz_timer: 1.0 # 0.0 if no visualization
+
+point_cloud_topics: ["/pepper/camera/depth/points"]
+point_cloud_frames: ["/CameraDepth_frame"]
+
+# social agents config
+social_agents_topic: "/pedsim_simulator/simulated_agents"
+social_costmap_topic: "/social_costmap"
+
+global_2d_map_topic: "/projected_map"
+robot_distance_view: 8
+robot_velocity_thres: 0.22
+robot_fov: 1.57
+social_costmap_decay_factor: 0.00000001
+social_costmap_resolution_factor: 5
+
+# octomap
+octomap_service: /octomap_binary
+
+social_relevance_validity_checking: True

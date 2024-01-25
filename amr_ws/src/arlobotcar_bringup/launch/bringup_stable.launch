@@ -1,0 +1,35 @@
+<launch>
+
+    <!-- SImulation Moddel-->
+  <param name="robot_description" command="$(find xacro)/xacro $(find robotPV_V1_description)/urdf/robotPV_V1.xacro"/>
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+        <param name="publish_frequency" type="double" value="50.0" />
+    </node>
+    <!--Node for arlobot movement, starts configuration for velocity messages using encoders-->
+    <node pkg="arlo_control_msgs" type="arlo_msg_controller_vel.py" name="arlo_msgs_control_node" output="screen" />
+    <!--Driver node for differential robots-->
+    <node pkg="differential_drive" type="twist_to_motors.py" name="twist_to_motors">
+        <rosparam param="base_width">0.393</rosparam>
+        <remap from="lwheel_vtarget" to="lwheel_vtarget" />
+        <remap from="rwheel_vtarget" to="rwheel_vtarget" />
+        <remap from="twist" to="cmd_vel" />
+    </node>
+        <node pkg="arlobotcar_bringup" type="odom_raw.py" name="odom_p2ub" output="screen" >
+        <remap from="/sub_vel" to="/cmd_vel" />
+    </node>
+    <!--Publish Odometry data-->
+    <!-- <node pkg="arlobotcar_bringup" type="odom_raw.py" name="odom_pub" output="screen" >
+        <remap from="/sub_vel" to="/cmd_vel" />
+    </node>-->
+    <!--laser filter-->
+      </node>
+        <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter">
+        <rosparam command="load" file="$(find arlobotcar_bringup)/config/rplidar_laser_config.yaml" />
+    </node>
+
+    
+    <!-- TODO@ Implement if neccesary Kalman Data fusion with robot_lcoalization module (git) (param .yaml needed)-->
+    <!-- TODO@ Implement if neccesary Filter and fuse imu data with imu_filter_madgwick module (git)-->
+    <!-- TODO@ Implement if neccesary joy handle control with Joy module (ROS Official Driver)-->
+</launch>

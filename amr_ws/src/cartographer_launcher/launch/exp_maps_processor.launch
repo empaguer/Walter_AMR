@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="open_rviz" default="true"/>
+    <!-- <arg name="urdf_file" default="xacro '$(find arlobot_description)/urdf/common_default.urdf.xacro'"/>
+  <param name="robot_description" command="$(arg urdf_file)"/> -->
+
+  <!-- <rosparam param="ticks_meter">300</rosparam>
+  <rosparam param="base_width">0.393</rosparam> -->
+  <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/> -->
+
+<!--<node name="rosserial_node" pkg="rosserial_arduino" type="serial_node.py" output="screen">
+    <param name="port" type="string" value="/dev/ttyUSB1"/>
+  </node>-->
+  <!-- <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="virtual_joystick" output="screen"/> -->
+
+  
+  <!-- diff drive nodes -->
+  
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)">
+    <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find cartographer_launcher)/rviz/turtlebot3_cartographer.rviz"/>
+  </group>
+</launch>

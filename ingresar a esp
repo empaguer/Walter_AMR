@@ -1,0 +1,99 @@
+pasos para ingresar al esp32 y editar archivos por medio de repl
+
+1. ssh sasilva@192.168.1.3 ++ se ingresa a la pc esclavo
+2. sudo chmod 777 /dev/ttyUSB*
+3. presionar botones y luego poner: rshell -p /dev/ttyUSB1 --dtr 1 --editor nano
+4. borrar el main por comodidad: rm /pyboard/main.py
+5. cat /pyboard/round_move.py
+cat /pyboard/mainkmbm.py
+edit /pyboard/mainkmbm.py
+6. repl
+7. import round_move //se llama al programa que permite que el robot se mueva solo, se ejecuta al dar enter
+****************************************************
+cp /pyboard/main_original.py /pyboard/main.py
+
+/home/sasilva> cat /pyboard/round_move.py
+from arlorobot import ArloRobot
+import time
+
+robot = ArloRobot(serial_id=2, baudrate=19200, tx=17, rx=16, pace=2)
+
+while True:
+        print("avanzando")
+	robot.go_speed(50,25)
+	time.sleep(3)
+        print("parando")
+	robot.go_speed(0,0)
+	time.sleep(4)
+
+
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "round_move.py", line 9, in <module>
+KeyboardInterrupt: 
+>>>  
+
+*********************************************************
+Para asignar velocidadades de ruedas, en repl
+1. from arlorobot import ArloRobot
+2. robot = ArloRobot(serial_id=2, baudrate=19200, tx=17, rx=16, pace=2)
+3. robot.go_speed(x,x)
+*********************************************************    
+Para editar un archivo
+/home/sasilva> edit /pyboard/round_move.py
+
+
+**********************************************************************
+
+programa para enviar enviar unos y ceros y comprobar si hay errores o no. Se enviaria la senal al pin 17 que es de trasmision
+si empieza a encender y apagar es porque la placa ya se bloqueo.
+RESULTADO: no sucedio nada. Ahora se intentara escribir un comando por el serial.
+from machine import Pin
+>>> import time
+>>> 
+>>> p17=Pin(17,Pin.OUT)
+>>> p17.on()
+>>> 
+>>> while(1):
+...     p17.on()
+...     time.sleep_ms(500)
+...     p17.off()
+...     time.sleep_ms(500)
+...     
+
+
+*******correrlo normalmente
+1. roslaunch social_nav_tests robot_starter.launch
+2. abrir otro terminal
+3. ssh sasilva@192.168.1.3
+4. sudo chmod 777 /dev/ttyUSB*
+5. roslaunch cartographer_launcher arlobot_exp_map_jetson.launch, ya se puede trazar trayectoria
+6. para controlar manualmente, abrir otro terminal: 
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py 
+
+para modificar a los parametros en vivo: rosrun rqt_reconfigure rqt_reconfigure
+*******programa q se mueve solo por 3 seg y luego se detiene
+
+from arlorobot import ArloRobot
+import time
+
+robot = ArloRobot(serial_id=2, baudrate=19200, tx=17, rx=16, pace=2)
+
+while True:
+        print("avanzando")
+        robot.go_speed(50,25)
+        time.sleep(2)
+        print("parando")
+        robot.go_speed(0,0)
+        time.sleep(2)
+
+include "BluetoothSerial.h"
+
+if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
+error Bluetooh is not enabled! Please run 'make menuconfig' to and enable it
+endif
+
+
+
+
+

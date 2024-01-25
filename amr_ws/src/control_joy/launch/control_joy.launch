@@ -1,0 +1,8 @@
+<launch>
+    <!-- joy node-->
+    <node name="joy_node" pkg="joy" type="joy_node" />
+    <!-- Apriltag-->
+    <node name="control_joy_node" pkg="control_joy" type="improved_joy.py" output="screen" />
+    
+
+</launch>

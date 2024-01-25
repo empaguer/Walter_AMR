@@ -1,0 +1,29 @@
+<robot name="custom_box">
+
+    <link name="box">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.5 0.5 1"/>
+            </geometry>
+            <material name="box_material">
+                <color rgba="0.980392 0.796078 0.262745 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.5 0.5 1"/>
+            </geometry>
+            <material name="box_material">
+                <color rgba="0.980392 0.796078 0.262745 1.0"/>
+            </material>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.307775" />
+            <inertia ixx="0.00215876" ixy="-5.91536e-50" ixz="0" iyy="0.00215876" iyz="0" izz="0.00394031" />
+        </inertial>
+    </link>
+
+</robot>

@@ -1,0 +1,79 @@
+<launch>
+  <!-- change the serial number to the correct one for the camera that is being used -->
+  <arg name="serial_no" default=""/>
+  <arg name="usb_port_id" default=""/>
+
+  <arg name="device_type" default="t265"/>
+  <arg name="json_file_path" default=""/>
+  <arg name="camera" default="rs_t265"/>
+  <arg name="tf_prefix_camera1" default="$(arg camera)"/>
+
+
+  <arg name="fisheye_width" default="848"/>
+  <arg name="fisheye_height" default="800"/>
+  <arg name="enable_fisheye1" default="true"/>
+  <arg name="enable_fisheye2" default="true"/>
+  <arg name="initial_reset" default="false"/>
+
+  <arg name="fisheye_fps" default="30"/>
+
+  <arg name="gyro_fps" default="200"/>
+  <arg name="accel_fps" default="62"/>
+  <arg name="enable_gyro" default="true"/>
+  <arg name="enable_accel" default="true"/>
+  <arg name="enable_pose" default="true"/>
+
+  <arg name="enable_sync" default="true"/>
+
+  <arg name="linear_accel_cov" default="0.01"/>
+  <arg name="publish_odom_tf" default="true"/>
+  <arg name="odom_frame_id" default="odom"/>
+  <arg name="topic_odom_in" default="/wheel_odom"/>
+  <!-- <arg name="hold_back_imu_for_frames" default="true"/> -->
+  <arg name="unite_imu_method" default="linear_interpolation"/>
+  <arg name="calib_odom_file" default="$(find arlobot_description)/config/calibration_odometry.json" />
+"/>
+  <arg name="base_frame_id" default="rs_t265_pose_frame"/>
+  <!-- <arg name="pose_frame_id" default="$(arg tf_prefix_camera1)_pose_frame"/> -->
+
+  <rosparam>
+    /rs_t265/tracking_module/enable_pose_jumping: false
+  </rosparam>
+  <group ns="$(arg camera)">
+
+    <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
+      <arg name="tf_prefix" value="$(arg tf_prefix_camera1)"/>
+      <arg name="serial_no" value="$(arg serial_no)"/>
+      <arg name="usb_port_id" value="$(arg usb_port_id)"/>
+      <arg name="device_type" value="$(arg device_type)"/>
+      <arg name="json_file_path" value="$(arg json_file_path)"/>
+
+      <arg name="enable_sync" value="$(arg enable_sync)"/>
+
+      <arg name="fisheye_width" value="$(arg fisheye_width)"/>
+      <arg name="fisheye_height" value="$(arg fisheye_height)"/>
+      <arg name="enable_fisheye1" value="$(arg enable_fisheye1)"/>
+      <arg name="enable_fisheye2" value="$(arg enable_fisheye2)"/>
+
+      <arg name="fisheye_fps" value="$(arg fisheye_fps)"/>
+      <arg name="gyro_fps" value="$(arg gyro_fps)"/>
+      <arg name="accel_fps" value="$(arg accel_fps)"/>
+      <arg name="enable_gyro" value="$(arg enable_gyro)"/>
+      <arg name="enable_accel" value="$(arg enable_accel)"/>
+      <arg name="enable_pose" value="$(arg enable_pose)"/>
+
+      <arg name="publish_odom_tf" value="$(arg publish_odom_tf)"/>
+      <arg name="linear_accel_cov" value="$(arg linear_accel_cov)"/>
+      <arg name="initial_reset" value="$(arg initial_reset)"/>
+      <arg name="unite_imu_method" value="$(arg unite_imu_method)"/>
+      <arg name="topic_odom_in" value="$(arg topic_odom_in)"/>
+      <arg name="calib_odom_file" value="$(arg calib_odom_file)"/>
+      <arg name="odom_frame_id" value="$(arg odom_frame_id)"/>
+      <!-- <arg name="base_frame_id" value="$(arg base_frame_id)"/> -->
+      <!-- <arg name="pose_frame_id" value="$(arg pose_frame_id)"/> -->
+    </include>
+  </group>
+  <!-- the realsense overrides the URDF transforms from the .xacro, so to over rule it back, we place the 
+  base link to realsense link with a static tf -->
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_rs_t265_link" args="-0.21 0.01 0.11 0 0 0 base_link $(arg tf_prefix_camera1)_link 100" />
+</launch>

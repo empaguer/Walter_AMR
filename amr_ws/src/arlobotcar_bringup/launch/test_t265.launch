@@ -1,0 +1,7 @@
+<launch>
+    <!--camara --> 
+    <include file="$(find arlobotcar_bringup)/launch/t265_accel.launch"/>
+    <!--rviz --> 
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find realsense2_camera)/rviz/t265.rviz" required="true" />
+    
+</launch>

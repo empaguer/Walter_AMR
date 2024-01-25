@@ -1,0 +1,41 @@
+# Navigation base parameters
+controller_frequency: 10.0
+planner_frequency: 5.0
+
+# Global Planner Parameters
+NavfnROS:
+  allow_unknown: true
+
+# Local Planner Parameters
+TrajectoryPlannerROS:
+  max_vel_x: 0.3  # Maximum linear velocity
+  min_vel_x: 0.0  # Minimum linear velocity
+  max_rotational_vel: 1.0  # Maximum rotational velocity
+  min_in_place_rotational_vel: 0.5  # Minimum rotational velocity for in-place rotations
+  acc_lim_x: 0.5  # Linear acceleration limit
+  acc_lim_theta: 1.0  # Angular acceleration limit
+  holonomic_robot: false  # Set to true for holonomic robots
+  escape_vel: -0.1  # Escape velocity (used for recovery behaviors)
+
+# Costmap parameters
+costmap_common_params:
+  update_frequency: 5.0
+  publish_frequency: 2.0
+  width: 5.0
+  height: 5.0
+  resolution: 0.05
+
+global_costmap:
+  global_frame: map
+  robot_base_frame: base_footprint
+  update_mode: sequential
+  static_map: true
+
+local_costmap:
+  global_frame: odom
+  robot_base_frame: base_footprint
+  update_mode: sequential
+  rolling_window: true
+  width: 3.0
+  height: 3.0
+  resolution: 0.05

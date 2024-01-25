@@ -1,0 +1,25 @@
+<launch>
+    <include file="$(find cartographer_launcher)/launch/arlobot_exp_nav.launch"></include>
+
+    <include file="$(find arlobot_uv_launcher)/launch/pedsim_exp.launch"></include>
+
+    <include file="$(find arlobot_uv_launcher)/launch/aruco_detector.launch"></include>
+
+    <include file="$(find arlobot_uv_launcher)/launch/autodock.launch"></include>
+
+    <include file="$(find arlobot_uv_launcher)/launch/leg_detector.launch"></include>
+
+    <include file="$(find arlobot_uv_launcher)/launch/velocity_smoother.launch"></include>
+
+    <include file="$(find sfm_diff_drive)/launch/sfm_drive_exp.launch"></include>
+
+    <include file="$(find cartographer_launcher)/launch/move_base_launcher.launch"></include>
+
+    <node pkg="distance" name="presence_emitter_node" type="distance.py" output="screen"></node>
+
+    <node pkg="arlobot_uv_launcher" name="people_control_stop_node" type="people_control_stop.py" output="screen"></node>
+
+    <!-- <node pkg="arlobot_uv_launcher" name="battery_monitor_node" type="battery_monitor.py" output="screen">
+    </node> -->
+
+</launch>

@@ -1,0 +1,61 @@
+<launch>
+
+
+    <arg name="configuration_basename" default="arlobot_uv_exp_maps.lua" />
+    <rosparam param="ticks_meter">300</rosparam>
+
+    <!-- <node pkg="arlo_control_msgs" type="arlo_msg_controller_vel.py" name="arlo_msgs_control_node" output="screen"/> -->
+
+    <node pkg="arlo_control_msgs" type="arlo_msg_controller_vel.py" name="arlo_msgs_control_node" output="screen" />
+
+    <!-- differential drive control -->
+
+    <node pkg="differential_drive" type="twist_to_motors.py" name="twist_to_motors">
+        <rosparam param="base_width">0.393</rosparam>
+        <remap from="lwheel_vtarget" to="lwheel_vtarget" />
+        <remap from="rwheel_vtarget" to="rwheel_vtarget" />
+        <remap from="twist" to="cmd_vel" />
+    </node>
+
+    <include file="$(find arlobot_description)/launch/arlobot_uv_description.launch">
+        <arg name="robot_sim" value="true" />
+    </include>
+
+    <!-- <include file="$(find social_nav_tests)/launch/planner_launcher.launch" /> -->
+
+    <node pkg="social_nav_tests" type="odom_publisher.py" name="odom_publisher" />
+
+    <!-- <include file="$(find social_nav_tests)/launch/leg_detector.launch" /> -->
+
+        <include file="$(find social_nav_tests)/launch/leg_tracker.launch" />
+
+
+
+ <!-- move_base -->
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+        <rosparam file="$(find social_nav_tests)/param/dwa_planner/costmap_common_params_arlobot.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find social_nav_tests)/param/dwa_planner/costmap_common_params_arlobot.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find social_nav_tests)/param/dwa_planner/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find social_nav_tests)/param/dwa_planner/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find social_nav_tests)/param/dwa_planner/move_base_params.yaml" command="load" />
+        <rosparam file="$(find social_nav_tests)/param/dwa_planner/dwa_local_planner_params_arlobot.yaml" command="load" />
+        <!-- <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+    <remap from="odom" to="$(arg odom_topic)"/>
+    <param name="DWAPlannerROS/min_vel_x" value="0.0" if="$(arg move_forward_only)" /> -->
+    </node>
+
+    <!-- cartographer_occupancy_grid_node -->
+    <!-- <node pkg="cartographer_ros" type="cartographer_occupancy_grid_node" name="cartographer_occupancy_grid_node" args="-resolution 0.05" /> -->
+    <!-- 
+    <node pkg="tf" type="static_transform_publisher" name="base_link_to_rs_t265_link" args="-0.2248 0 0.2459 0 0 0 base_footprint $(arg tf_prefix)_link 1000" /> -->
+
+    <!-- <node pkg="tf" type="static_transform_publisher" name="odom_to_map" args="0 0 0 0 0 0 map odom 1000" /> -->
+
+    <!-- <node pkg="tf" type="static_transform_publisher" name="base_link_to_rs_t265_imu_link" args="-0.2248 0 0.2459 3.1415 0 0 base_footprint $(arg tf_prefix)_imu_optical_frame 1000" /> -->
+
+<!-- rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find arlobot_description)/rviz/arlobot_uv_nav_pedsim.rviz"/>
+
+
+</launch>

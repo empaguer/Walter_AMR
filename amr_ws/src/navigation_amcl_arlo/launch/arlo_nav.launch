@@ -1,0 +1,37 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="map_file" default="$(find arlobotcar_nav)/maps/CIDISMAP.yaml"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="move_forward_only" default="false"/>
+
+  <!-- Turtlebot3 -->
+  <include file="$(find arlobotcar_bringup)/launch/remote.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <!-- Map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!-- AMCL -->
+  <include file="$(find arlobotcar_nav)/launch/library/amcl_test.launch"/>
+
+
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find arlobot_description)/rviz/arlobot_uv_nav_pedsim.rviz"/>
+  </group>
+      <node name="rosserial_node" pkg="rosserial_python" type="serial_node.py" output="screen">
+        <param name="port"
+         type="string" value="/dev/ttyUSB1"/>
+        <param name="baud" value="115200"/>
+    </node>
+    <include file="$(find arlobot_uv_launcher)/launch/rplidar.launch" />
+  <!--- ekf -->
+
+  <!-- move_base -->
+      <include file="$(find arlobotcar_nav)/launch/library/move_base_turtle.launch">
+  </include>
+</launch>

@@ -1,0 +1,18 @@
+<launch>
+    <include file="$(find cartographer_launcher)/launch/arlobot_uv_sim_nav.launch"></include>
+
+    <include file="$(find arlobot_uv_launcher)/launch/pedsim_scenario_launcher.launch"></include>
+
+    <include file="$(find arlobot_uv_launcher)/launch/aruco_detector.launch"></include>
+
+    <include file="$(find arlobot_uv_launcher)/launch/autodock.launch"></include>
+
+    <!-- <include file="$(find distance)/launch/darknet_ros_launcher.launch">
+    </include> -->
+
+  <!--  <include file="$(find sfm_diff_drive)/launch/sfm_drive.launch"></include>
+
+    <node pkg="distance" name="presence_emitter" type="distance.py"></node>-->
+
+    <node pkg="arlobot_uv_launcher" name="people_control_stop" type="people_control_stop.py"></node>
+</launch>

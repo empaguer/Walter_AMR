@@ -1,0 +1,50 @@
+# Path planning parameters
+world_frame: map
+planner_name: RRTstarMod # RRT, RRTstar
+local_planner_name: InformedRRTstarMod
+planning_bounds_x: [-50.0, 50.0] # [x_min, x_max]
+planning_bounds_y: [-50.0, 50.0] # [y_min, y_max]
+dynamic_bounds: True # the bounds of the planner will change according to the start and goal configurations
+start_state: [0.0, 0.0, 0.0] # [X, Y, Yaw]
+goal_state: [5.0, -1.0, 0.0] # [X, Y, Yaw]
+timer_period: 1.0
+solving_time: 0.5
+opport_collision_check: True
+reuse_last_best_solution: True
+optimization_objective: SocialCostmap #PathLength, RiskZones, SocialComfort, ExtendedSocialComfort, SocialCostmap
+# optimization_objective: RiskZones
+local_optimization_objective: SocialComfort
+motion_cost_interpolation: False
+start_prev_path_proj: False
+xy_goal_tolerance: 0.25
+local_xy_goal_tolerance: 1
+visualize_tree: False
+
+# Collision checking
+octomap_service: /octomap_binary
+global_map_topic: /map
+robot_base_height: 0.01
+robot_base_radius: 0.35
+
+odometry_topic: /odom
+query_goal_topic: /smf_move_base_planner/query_goal
+solution_path_topic: /smf_move_base_planner/solution_path
+
+goto_action: /smf_goto_action
+goto_region_action: /smf_goto_region_action
+
+# Social agents data topics
+sim_agents_topic: /pedsim_simulator/simulated_agents
+
+# extra frame option
+main_frame: map
+
+social_costmap_topic: "/social_costmap"
+
+local_path_range: 4
+
+social_relevance_validity_checking: True
+
+local_reuse_last_best_solution: True
+
+use_social_costmap: True

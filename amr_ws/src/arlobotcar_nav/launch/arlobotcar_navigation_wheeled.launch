@@ -1,0 +1,17 @@
+<launch>
+<!--Putting the rviz variable-->
+    <arg name="use_rviz" default="true"/>
+    <!--Node for arlobot movement, starts configuration for velocity messages using encoders-->
+    <arg name="mapp" default="newCidis"/>
+    <!--Starting the map node, so it appears in Rviz, IMPORTANT MAP MUST BE IN MAPS/-->
+    <node name ="map_server" pkg="map_server" type="map_server" args="$(find arlobotcar_nav)/maps/$(arg mapp).yaml">
+        <!--<remap from ="map" to="/CIDISMAP"/>-->
+    </node>
+    <!--Running amcl node for helping in location-->
+    <include file="$(find arlobotcar_nav)/launch/library/amcl.launch"/>
+    <!--Node for starting move launcher-->
+    <include file="$(find arlobotcar_nav)/launch/library/move_base_wheeled.launch"/>
+    <!--Starting the rviz-->
+    <include file="$(find arlobotcar_nav)/launch/view/view_navigate.launch" if="$(arg use_rviz)"/>
+
+</launch>

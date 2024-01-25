@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- !MAPPER -->
+    <node name="smf_move_base_mapper" pkg="smf_move_base_mapping" type="smf_move_base_mapper" required="true" output="screen">
+        <rosparam command="load" file="$(find social_nav_tests)/config/smf_move_base_mapping.yaml" />
+    </node>
+
+    <!-- !PLANNER -->
+    <node name="smf_move_base_planner" pkg="smf_move_base_planning" type="smf_move_base_planner" required="true" output="screen">
+        <rosparam command="load" file="$(find social_nav_tests)/config/smf_move_base_planning.yaml" />
+    </node>
+
+    <!-- !CONTROLLER -->
+    <node name="smf_move_base_controller" pkg="smf_move_base_control" type="base_controller.py" required="true">
+        <rosparam command="load" file="$(find social_nav_tests)/config/smf_move_base_control.yaml" />
+    </node>
+
+</launch>

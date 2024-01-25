@@ -1,0 +1,345 @@
+<?xml version="1.0" ?>
+<robot name="robotPV_V1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find robotPV_V1_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find robotPV_V1_description)/urdf/robotPV_V1.trans" />
+<xacro:include filename="$(find robotPV_V1_description)/urdf/robotPV_V1.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.0036107342004369214 5.806314570340318e-06 0.13211969797103357" rpy="0 0 0"/>
+    <mass value="3.9399570503509223"/>
+    <inertia ixx="0.063072" iyy="0.060342" izz="0.087364" ixy="-0.0" iyz="2e-06" ixz="-0.000773"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_caster_base_link_1">
+  <inertial>
+    <origin xyz="-0.016295118229952638 -9.60533271267989e-05 -0.021677343403545837" rpy="0 0 0"/>
+    <mass value="0.010793096828982782"/>
+    <inertia ixx="3e-06" iyy="5e-06" izz="3e-06" ixy="-0.0" iyz="-0.0" ixz="-2e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.185146 -0.0 -0.09525" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/front_caster_base_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.185146 -0.0 -0.09525" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/front_caster_base_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="back_caster_base_link_1">
+  <inertial>
+    <origin xyz="-0.0162953111359046 3.172126970186083e-07 -0.021677343403551458" rpy="0 0 0"/>
+    <mass value="0.010793096828982782"/>
+    <inertia ixx="3e-06" iyy="5e-06" izz="3e-06" ixy="0.0" iyz="0.0" ixz="-2e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.185134 -0.0 -0.09525" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/back_caster_base_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.185134 -0.0 -0.09525" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/back_caster_base_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_link_1">
+  <inertial>
+    <origin xyz="4.441203159116726e-05 -8.785050037096731e-06 9.413313841494242e-06" rpy="0 0 0"/>
+    <mass value="0.3408727525278476"/>
+    <inertia ixx="0.000585" iyy="0.001134" izz="0.000584" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-6e-06 0.197739 -0.0762" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/right_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-6e-06 0.197739 -0.0762" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/right_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_link_1">
+  <inertial>
+    <origin xyz="-4.459789063504783e-05 8.69501956068941e-06 9.413313842299154e-06" rpy="0 0 0"/>
+    <mass value="0.3408727525278476"/>
+    <inertia ixx="0.000585" iyy="0.001134" izz="0.000584" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-6e-06 -0.197739 -0.0762" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/left_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-6e-06 -0.197739 -0.0762" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/left_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_castor_link_1">
+  <inertial>
+    <origin xyz="-1.906281575436708e-05 0.003174421742765952 1.5265566588595902e-15" rpy="0 0 0"/>
+    <mass value="0.29898231985900336"/>
+    <inertia ixx="0.000345" iyy="0.000352" izz="0.000345" ixy="-0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.146213 0.003405 -0.048514" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/front_castor_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.146213 0.003405 -0.048514" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/front_castor_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="back_castor_link_1">
+  <inertial>
+    <origin xyz="3.4491911815592857e-07 -0.0031808118574478696 -4.045375145977914e-15" rpy="0 0 0"/>
+    <mass value="0.29898231985900336"/>
+    <inertia ixx="0.000345" iyy="0.000352" izz="0.000345" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.224087 -0.003175 -0.048514" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/back_castor_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.224087 -0.003175 -0.048514" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/back_castor_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="t265_link_1">
+  <inertial>
+    <origin xyz="-0.014772220508856376 0.0007656456936754774 0.008403229697358655" rpy="0 0 0"/>
+    <mass value="0.04138408026743239"/>
+    <inertia ixx="4.3e-05" iyy="1e-05" izz="4.8e-05" ixy="-0.0" iyz="-0.0" ixz="-2e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.221796 0.0 -0.19965" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/t265_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.221796 0.0 -0.19965" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/t265_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="laser_link_1">
+  <inertial>
+    <origin xyz="0.012336970357441685 -0.00037270594953361637 0.014931299289251937" rpy="0 0 0"/>
+    <mass value="0.07338073679887232"/>
+    <inertia ixx="3.5e-05" iyy="6.7e-05" izz="7.5e-05" ixy="-1e-06" iyz="0.0" ixz="5e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-6e-06 0.0 -0.239652" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/laser_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-6e-06 0.0 -0.239652" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/laser_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+<link name="depth_camera_link">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+</link>
+<link name="odom_256_link">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+</link>
+<link name="body_link_1">
+  <inertial>
+    <origin xyz="-0.0014571345229504428 -5.2419596615885934e-08 0.34651599919682247" rpy="0 0 0"/>
+    <mass value="7.418925935917177"/>
+    <inertia ixx="0.913306" iyy="0.911525" izz="0.152554" ixy="0.003547" iyz="-0.0" ixz="0.004092"/>
+  </inertial>
+  <visual>
+    <origin xyz="-6e-06 0.0 -0.297082" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/body_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-6e-06 0.0 -0.297082" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/body_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="compartment_link_1">
+  <inertial>
+    <origin xyz="-0.04615849357190875 -5.327610671740457e-08 0.09178442515283436" rpy="0 0 0"/>
+    <mass value="1"/>
+    <inertia ixx="0.121693" iyy="0.110548" izz="0.167562" ixy="-0.0" iyz="0.0" ixz="0.000782"/>
+  </inertial>
+  <visual>
+    <origin xyz="-6e-06 0.0 -1.042082" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/compartment_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-6e-06 0.0 -1.042082" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/compartment_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="D435i_link_1">
+  <inertial>
+    <origin xyz="0.002982548026999987 -7.159743539005768e-06 -0.01263400909620871" rpy="0 0 0"/>
+    <mass value="0.062035228314442525"/>
+    <inertia ixx="4.3e-05" iyy="1.8e-05" izz="5.3e-05" ixy="0.0" iyz="-0.0" ixz="4e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.180336 0.0 -1.027082" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/D435i_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.180336 0.0 -1.027082" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://robotPV_V1_description/meshes/D435i_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute_1" type="continuous">
+  <origin xyz="0.185146 0.0 0.09525" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="front_caster_base_link_1"/>
+  <axis xyz="0.0 -0.0 -1.0"/>
+</joint>
+
+<joint name="Revolute_2" type="continuous">
+  <origin xyz="-0.185134 0.0 0.09525" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="back_caster_base_link_1"/>
+  <axis xyz="0.0 -0.0 -1.0"/>
+</joint>
+
+<joint name="Revolute_3" type="continuous">
+  <origin xyz="6e-06 -0.197739 0.0762" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_link_1"/>
+  <axis xyz="-0.0 1.0 -0.0"/>
+</joint>
+
+<joint name="Revolute_4" type="continuous">
+  <origin xyz="6e-06 0.197739 0.0762" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_link_1"/>
+  <axis xyz="0.0 1.0 -0.0"/>
+</joint>
+
+<joint name="Revolute_5" type="continuous">
+  <origin xyz="-0.038933 -0.003405 -0.046736" rpy="0 0 0"/>
+  <parent link="front_caster_base_link_1"/>
+  <child link="front_castor_link_1"/>
+  <axis xyz="-0.005914 0.999983 -0.0"/>
+</joint>
+
+<joint name="Revolute_6" type="continuous">
+  <origin xyz="-0.038953 0.003175 -0.046736" rpy="0 0 0"/>
+  <parent link="back_caster_base_link_1"/>
+  <child link="back_castor_link_1"/>
+  <axis xyz="0.0 -1.0 -0.0"/>
+</joint>
+
+<joint name="Rigid 11" type="fixed">
+  <origin xyz="0.221796 0.0 0.19965" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="t265_link_1"/>
+</joint>
+
+<joint name="Rigid 14" type="fixed">
+  <origin xyz="6e-06 0.0 0.239652" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="laser_link_1"/>
+</joint>
+
+<joint name="Rigid 17" type="fixed">
+  <origin xyz="6e-06 0.0 0.297082" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="body_link_1"/>
+</joint>
+
+<joint name="Rigid 18" type="fixed">
+  <origin xyz="0.0 0.0 0.745" rpy="0 0 0"/>
+  <parent link="body_link_1"/>
+  <child link="compartment_link_1"/>
+</joint>
+
+<joint name="Rigid 19" type="fixed">
+  <origin xyz="0.2 0.0 0.73" rpy="0 0 0"/>
+  <parent link="body_link_1"/>
+  <child link="D435i_link_1"/>
+</joint>
+<joint name="depth_camera_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
+        <parent link="D435i_link_1" />
+        <child link="depth_camera_link" />
+</joint>
+<joint name="odom_t265_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="1.57 0 -1.57" />
+        <parent link="t265_link_1" />
+        <child link="odom_256_link" />
+</joint>
+</robot>

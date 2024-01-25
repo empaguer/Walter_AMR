@@ -1,0 +1,22 @@
+<launch>
+
+    <arg name="walls_scale" default="0.1" />
+
+    <node pkg="leg_detector" type="leg_detector" name="leg_detector" args="scan:=scan_filtered $(find leg_detector)/config/trained_leg_detector.yaml" output="screen">
+
+        <param name="publish_legs" type="bool" value="false"/>
+        <param name="leg_pair_separation" type="double" value="0.4"/>
+        <param name="fixed_frame" type="string" value="map"/>
+    </node>
+
+    <node pkg="social_nav_tests" type="leg_pedsim_publisher.py" name="leg_pedsim_publisher" output="screen" />
+
+    <arg name="hz" default="25.0" />
+
+    <node name="pedsim_visualizer" type="pedsim_visualizer_node" pkg="pedsim_visualizer" output="screen">
+        <param name="hz" value="$(arg hz)" type="double" />
+        <param name="walls_marker_scale" value="$(arg walls_scale)" type="double" />
+        <remap from="/pedsim_simulator/simulated_agents" to="/pedsim_simulator/simulated_agents" />
+    </node>
+
+</launch>

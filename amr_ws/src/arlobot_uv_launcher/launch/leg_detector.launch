@@ -1,0 +1,10 @@
+<launch>
+
+    <node pkg="leg_detector" type="leg_detector" name="leg_detector" args="scan:=scan_filtered $(find leg_detector)/config/trained_leg_detector.yaml" output="screen">
+
+        <param name="publish_legs" type="bool" value="false"/>
+        <param name="leg_pair_separation" type="double" value="0.4"/>
+        <param name="fixed_frame" type="string" value="odom"/>
+    </node>
+
+</launch>

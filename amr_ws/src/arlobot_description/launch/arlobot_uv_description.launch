@@ -1,0 +1,35 @@
+<launch>
+
+    <arg name="robot_sim" default="true"/>
+
+    <arg name="x_pos" default="0"/>
+    <arg name="y_pos" default="0"/>
+    <arg name="z_pos" default="0.8"/>
+    <arg name="roll" default="0"/>
+    <arg name="pitch" default="0"/>
+    <arg name="yaw" default="1.57"/>
+
+    <arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find arlobot_description)/urdf/robot.urdf'" />
+
+    <param name="robot_description" command="$(arg urdf_file)" />
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+        <param name="publish_frequency" type="double" value="50.0" />
+    </node>
+
+    <group if="$(arg robot_sim)">
+        <include file="$(find gazebo_ros)/launch/empty_world.launch">
+            <arg name="world_name" value="$(find turtlebot_sim)/worlds/entorno.world"/>
+            <arg name="paused" value="false"/>
+            <arg name="use_sim_time" value="true"/>
+            <arg name="gui" value="true"/>
+            <arg name="headless" value="false"/>
+            <arg name="debug" value="false"/>
+        </include>
+        <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model arlobot_uv -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw) -param robot_description" />
+    </group>
+
+    <!-- rviz -->
+    <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find arlobot_description)/rviz/arlobot_uv_nav_pedsim.rviz"/> -->
+
+</launch>

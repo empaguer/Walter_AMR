@@ -1,0 +1,8 @@
+<launch>
+    <!-- SImulation Moddel-->
+  <param name="robot_description" command="$(find xacro)/xacro $(find robotPV_V1_description)/urdf/robotPV_V1.xacro"/>
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+        <param name="publish_frequency" type="double" value="50.0" />
+    </node>
+</launch>

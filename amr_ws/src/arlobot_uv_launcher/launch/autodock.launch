@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="arlo_auto_docking" type="auto_docking_server.py" name="auto_dock_node" output="screen">
+    </node>
+
+</launch>

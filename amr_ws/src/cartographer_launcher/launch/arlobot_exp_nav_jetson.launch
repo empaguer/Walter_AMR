@@ -1,0 +1,15 @@
+<launch>
+
+
+    <include file="$(find cartographer_launcher)/launch/rs_t265.launch">
+    </include>
+
+    <include file="$(find cartographer_launcher)/launch/rs_d435.launch">
+    </include>
+
+    <include file="$(find distance)/launch/darknet_ros_launcher.launch">
+    </include>
+
+    <include file="$(find arlobot_uv_launcher)/launch/rplidar.launch" />
+
+</launch>

@@ -1,0 +1,7 @@
+image: /home/cidis/tesis_PV_Cidis/amr_ws/src/arlobotcar_nav/maps/PRUEBAAS.pgm
+resolution: 0.050000
+origin: [-5.050000, -5.850000, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

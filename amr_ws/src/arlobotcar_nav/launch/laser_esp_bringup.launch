@@ -1,0 +1,29 @@
+<launch>
+    <!-- This launchs takes care of starting up the laser (Lidar) and the (esp) TODO: Bring Camera up here-->
+    <!-- Lidar include-->
+    <!-- ESP include-->
+    <node name="rosserial_node" pkg="rosserial_python" type="serial_node.py" output="screen">
+        <param name="port"
+         type="string" value="/dev/ttyUSB1"/>
+        <param name="baud" value="115200"/>
+    </node>
+    <include file="$(find arlobot_uv_launcher)/launch/rplidar.launch" />
+    <!-- camara realsense-->
+    <include file="$(find arlobotcar_bringup)/launch/rs_camera.launch" />
+    <!-- Apriltag-->
+    <include file="$(find apriltag_ros)/launch/continuous_detection.launch" />
+    <!-- TODO@ Include camera node include-->
+    <!-- BringUp files-->
+    <!--<arg name="wheeled_odom" value="$(arg wheeled_odom)" />
+    
+    </include>-->
+        <include file="$(find arlobotcar_bringup)/launch/bringup_stable_wheeled_odom.launch"/>
+
+    <!-- T265 DELETE PLS-->
+    <!--  <include file="$(find arlobotcar_bringup)/launch/t265_odemetry_launcher.launch" />
+    <node pkg="tf" type="static_transform_publisher" name="base_link_to_rs_t265_link" args="-0.2248 0 0.2459 0 0 0 base_link t265_link 1000" />  
+-->
+        <!--     <node pkg="tf" type="static_transform_publisher" name="base_link_to_rs_t265_link" args="0.221796 0.0 0.19965 -1.57 0 0 base_link odom_256_link2  100" /> 
+-->
+
+</launch>

@@ -1,0 +1,30 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="mapp" default="cafeteria"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="move_forward_only" default="false"/>
+
+  <!-- Turtlebot3 -->
+  <include file="$(find arlobotcar_bringup)/launch/arlobot_remote.launch">
+  </include> 
+
+  <!-- Map server -->
+    <node name ="map_server" pkg="map_server" type="map_server" args="$(find arlobot_sim_navigation)/maps/$(arg mapp).yaml" respawn="true">
+    <!--Modiciaciones-->
+   <!-- <remap from="map" to="mymap"/> -->
+    </node>
+  <!-- AMCL -->
+  <include file="$(find arlobot_sim_navigation)/launch/amcl.launch">
+  <remap from="scan_topic" value="scan_filtered"/>
+  </include>
+  <!-- move_base -->
+  <include file="$(find arlobot_sim_navigation)/launch/move_base.launch"/>
+ <!--apriltag messages, change to a personal file-->
+   <include file="$(find apriltag_ros)/launch/continuous_detection.launch"/>
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find arlobot_sim_navigation)/rviz/arlobot_sim_navigation.rviz"/>
+  </group>
+
+</launch>

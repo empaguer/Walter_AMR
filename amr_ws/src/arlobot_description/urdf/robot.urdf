@@ -1,0 +1,823 @@
+<robot name="onshape">
+
+    <link name="base_footprint" />
+
+    <link name="amr_completo_sim_inferior">
+        <visual>
+            <origin xyz="-0.000995628 0.000150356 -2.77464e-17" rpy="0 6.12323e-17 -1.5708" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/amr_completo_sim_inferior.stl" />
+            </geometry>
+            <material name="amr_completo_sim_inferior_material">
+                <color rgba="0.980392 0.796078 0.262745 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="-0.000995628 0.000150356 -2.77464e-17" rpy="0 6.12323e-17 -1.5708" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/amr_completo_sim_inferior.stl" />
+            </geometry>
+            <material name="amr_completo_sim_inferior_material">
+                <color rgba="0.980392 0.796078 0.262745 1.0" />
+            </material>
+        </collision>
+        <inertial>
+            <origin xyz="0.0048504 0.00251063 0.0524257" rpy="0 0 0" />
+            <mass value="10.3391" />
+            <inertia ixx="0.207213" ixy="0.000194765" ixz="-0.00534026" iyy="0.242417" iyz="-0.000474959" izz="0.376237" />
+        </inertial>
+    </link>
+
+    <joint name="base_joint" type="fixed">
+        <parent link="base_footprint" />
+        <child link="amr_completo_sim_inferior" />
+        <origin xyz="0.0 0.0 0.115" rpy="0 0 3.1415" />
+    </joint>
+
+    <link name="ruedas_laterales">
+        <visual>
+            <origin xyz="-0.0252705 -0.035061 -0.0255295" rpy="-7.13488e-16 1.10751e-16 -1.52506e-48" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/ruedas_laterales.stl" />
+            </geometry>
+            <material name="ruedas_laterales_material">
+                <color rgba="0.811765 0.858824 0.898039 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="-0.0252705 -0.035061 -0.0255295" rpy="-7.13488e-16 1.10751e-16 -1.52506e-48" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/ruedas_laterales.stl" />
+            </geometry>
+            <material name="ruedas_laterales_material">
+                <color rgba="0.811765 0.858824 0.898039 1.0" />
+            </material>
+        </collision>
+        <inertial>
+            <origin xyz="-0.00148981 0.0269936 -0.029183" rpy="0 0 0" />
+            <mass value="0.816648" />
+            <inertia ixx="0.000697575" ixy="-0.000310524" ixz="8.38163e-05" iyy="0.00161006" iyz="-4.40014e-05" izz="0.00172737" />
+        </inertial>
+    </link>
+
+    <link name="solo_rueda_lateral">
+        <visual>
+            <origin xyz="-1.0842e-19 0 0" rpy="5.38062e-33 -1.7745e-33 8.25566e-20" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/solo_rueda_lateral.stl" />
+            </geometry>
+            <material name="solo_rueda_lateral_material">
+                <color rgba="0.282353 0.282353 0.282353 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="-1.0842e-19 0 0" rpy="5.38062e-33 -1.7745e-33 8.25566e-20" />
+            <geometry>
+                <cylinder length="0.03" radius="0.078" />
+            </geometry>
+            <material name="solo_rueda_lateral_material">
+                <color rgba="0.282353 0.282353 0.282353 1.0" />
+            </material>
+        </collision>
+        <inertial>
+            <origin xyz="-0.000223609 -5.13895e-05 -1.39581e-05" rpy="0 0 0" />
+            <mass value="0.14828" />
+            <inertia ixx="0.000228496" ixy="-1.5779e-07" ixz="-9.52702e-08" iyy="0.000229548" iyz="-3.71736e-08" izz="0.00043763" />
+        </inertial>
+    </link>
+
+    <joint name="link6" type="continuous">
+        <origin xyz="-0.0252705 -0.035061 -0.0255295" rpy="-1.5708 -0.0012984 3.1415" />
+        <parent link="ruedas_laterales" />
+        <child link="solo_rueda_lateral" />
+        <axis xyz="0 0 1" />
+        <limit effort="9.6" velocity="95" />
+        <joint_properties friction="0.0" />
+    </joint>
+
+    <joint name="link1" type="fixed">
+        <origin xyz="0.0244044 -0.15987 -4.16334e-17" rpy="1.83697e-16 -0 3.08469e-49" />
+        <parent link="amr_completo_sim_inferior" />
+        <child link="ruedas_laterales" />
+        <axis xyz="0 0 1" />
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0" />
+    </joint>
+
+    <link name="ruedas_laterales_2">
+        <visual>
+            <origin xyz="0.0255295 0.035061 0.0255295" rpy="3.14159 -2.92194e-31 -7.82495e-47" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/ruedas_laterales.stl" />
+            </geometry>
+            <material name="ruedas_laterales_material">
+                <color rgba="0.811765 0.858824 0.898039 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0255295 0.035061 0.0255295" rpy="3.14159 -2.92194e-31 -7.82495e-47" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/ruedas_laterales.stl" />
+            </geometry>
+            <material name="ruedas_laterales_material">
+                <color rgba="0.811765 0.858824 0.898039 1.0" />
+            </material>
+        </collision>
+        <inertial>
+            <origin xyz="0.0493102 -0.0269936 0.029183" rpy="0 0 0" />
+            <mass value="0.816648" />
+            <inertia ixx="0.000697575" ixy="0.000310524" ixz="-8.38163e-05" iyy="0.00161006" iyz="-4.40014e-05" izz="0.00172737" />
+        </inertial>
+    </link>
+
+    <link name="solo_rueda_lateral_2">
+        <visual>
+            <origin xyz="2.1684e-19 0 0" rpy="8.77947e-32 -1.51973e-33 6.66121e-20" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/solo_rueda_lateral.stl" />
+            </geometry>
+            <material name="solo_rueda_lateral_material">
+                <color rgba="0.282353 0.282353 0.282353 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="2.1684e-19 0 0" rpy="8.77947e-32 -1.51973e-33 6.66121e-20" />
+            <geometry>
+                <cylinder length="0.03" radius="0.078" />
+            </geometry>
+            <material name="solo_rueda_lateral_material">
+                <color rgba="0.282353 0.282353 0.282353 1.0" />
+            </material>
+        </collision>
+        <inertial>
+            <origin xyz="-0.000223609 -5.13895e-05 -1.39581e-05" rpy="0 0 0" />
+            <mass value="0.14828" />
+            <inertia ixx="0.000228496" ixy="-1.5779e-07" ixz="-9.52702e-08" iyy="0.000229548" iyz="-3.71736e-08" izz="0.00043763" />
+        </inertial>
+    </link>
+
+    <joint name="link5" type="continuous">
+        <origin xyz="0.0255295 0.035061 0.0255295" rpy="1.5708 -0.0012984 -6.03855e-17" />
+        <parent link="ruedas_laterales_2" />
+        <child link="solo_rueda_lateral_2" />
+        <axis xyz="0 0 1" />
+        <limit effort="9.6" velocity="95" />
+        <joint_properties friction="0.0" />
+    </joint>
+
+    <joint name="link2" type="fixed">
+        <origin xyz="0.0244044 0.16017 1.04083e-17" rpy="3.14159 3.94793e-30 3.14159" />
+        <parent link="amr_completo_sim_inferior" />
+        <child link="ruedas_laterales_2" />
+        <axis xyz="0 0 1" />
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0" />
+    </joint>
+
+    <link name="caster_wheels">
+        <visual>
+            <origin xyz="-0.0201035 -1.51246e-17 -0.065278" rpy="1.5708 8.88178e-16 1.63156e-31" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/caster_wheels.stl" />
+            </geometry>
+            <material name="caster_wheels_material">
+                <color rgba="0 0 0 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="-0.0201035 -1.51246e-17 -0.065278" rpy="1.5708 8.88178e-16 1.63156e-31" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/caster_wheels.stl" />
+            </geometry>
+            <material name="caster_wheels_material">
+                <color rgba="0 0 0 1.0" />
+            </material>
+        </collision>
+        <inertial>
+            <origin xyz="-0.0167272 -1.01188e-09 -0.0603183" rpy="0 0 0" />
+            <mass value="0.202619" />
+            <inertia ixx="0.000153663" ixy="-1.23305e-11" ixz="3.33247e-05" iyy="0.000206038" iyz="-2.12569e-10" izz="0.000129726" />
+        </inertial>
+    </link>
+
+    <joint name="link3" type="fixed">
+        <origin xyz="0.206141 0.000150422 -1.38778e-17" rpy="-1.83697e-16 4.14152e-30 -3.14159" />
+        <parent link="amr_completo_sim_inferior" />
+        <child link="caster_wheels" />
+        <axis xyz="0 0 1" />
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0" />
+    </joint>
+
+    <link name="caster_wheels_2">
+        <visual>
+            <origin xyz="-0.0201035 -1.50975e-17 -0.065278" rpy="1.5708 8.88178e-16 -4.15179e-45" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/caster_wheels.stl" />
+            </geometry>
+            <material name="caster_wheels_material">
+                <color rgba="0 0 0 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="-0.0201035 -1.50975e-17 -0.065278" rpy="1.5708 8.88178e-16 -4.15179e-45" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/caster_wheels.stl" />
+            </geometry>
+            <material name="caster_wheels_material">
+                <color rgba="0 0 0 1.0" />
+            </material>
+        </collision>
+        <inertial>
+            <origin xyz="-0.0167272 -1.01188e-09 -0.0603183" rpy="0 0 0" />
+            <mass value="0.202619" />
+            <inertia ixx="0.000153663" ixy="-1.23305e-11" ixz="3.33247e-05" iyy="0.000206038" iyz="-2.12569e-10" izz="0.000129726" />
+        </inertial>
+    </link>
+
+    <joint name="link4" type="fixed">
+        <origin xyz="-0.208133 0.000150422 -2.77556e-17" rpy="1.83697e-16 -1.99424e-27 1.43532e-27" />
+        <parent link="amr_completo_sim_inferior" />
+        <child link="caster_wheels_2" />
+        <axis xyz="0 0 1" />
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0" />
+    </joint>
+
+    <link name="amr_completo_sim_superior">
+        <visual>
+            <origin xyz="-0.16536 -0.0901573 -0.0058" rpy="3.14159 -0 9.45457e-125" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/amr_completo_sim_superior.stl" />
+            </geometry>
+            <material name="amr_completo_sim_superior_material">
+                <color rgba="0.768627 0.886275 0.952941 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="-0.16536 -0.0901573 -0.0058" rpy="3.14159 -0 9.45457e-125" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/amr_completo_sim_superior.stl" />
+            </geometry>
+            <material name="amr_completo_sim_superior_material">
+                <color rgba="0.768627 0.886275 0.952941 1.0" />
+            </material>
+        </collision>
+        <inertial>
+            <origin xyz="-0.165366 -0.0901601 -0.318895" rpy="0 0 0" />
+            <mass value="22.7959" />
+            <inertia ixx="4.9803" ixy="-2.09916e-05" ixz="3.71234e-05" iyy="4.98069" iyz="0.000251782" izz="0.746188" />
+        </inertial>
+    </link>
+
+    <link name="foco_uv">
+        <visual>
+            <origin xyz="-1.38778e-17 -0.005 -0.59" rpy="0 -0 -6.40349e-49" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/foco_uv.stl" />
+            </geometry>
+            <material name="foco_uv_material">
+                <color rgba="0.670588 0.529412 0 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="-1.38778e-17 -0.005 -0.59" rpy="0 -0 -6.40349e-49" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/foco_uv.stl" />
+            </geometry>
+            <material name="foco_uv_material">
+                <color rgba="0.670588 0.529412 0 1.0" />
+            </material>
+        </collision>
+        <inertial>
+            <origin xyz="-1.39733e-17 -0.005 -0.59" rpy="0 0 0" />
+            <mass value="1.56695" />
+            <inertia ixx="0.182053" ixy="-2.33154e-49" ixz="0" iyy="0.182053" iyz="0" izz="0.000132366" />
+        </inertial>
+    </link>
+
+    <joint name="link8" type="fixed">
+        <origin xyz="-0.0497979 -0.198649 -1.3468" rpy="3.14159 5.2381e-16 1.5708" />
+        <parent link="amr_completo_sim_superior" />
+        <child link="foco_uv" />
+        <axis xyz="0 0 1" />
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0" />
+    </joint>
+
+    <link name="foco_uv_2">
+        <visual>
+            <origin xyz="0 0.005 -0.59" rpy="0 -0 -7.8041e-49" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/foco_uv.stl" />
+            </geometry>
+            <material name="foco_uv_material">
+                <color rgba="0.670588 0.529412 0 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0.005 -0.59" rpy="0 -0 -7.8041e-49" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/foco_uv.stl" />
+            </geometry>
+            <material name="foco_uv_material">
+                <color rgba="0.670588 0.529412 0 1.0" />
+            </material>
+        </collision>
+        <inertial>
+            <origin xyz="-9.55516e-20 0.005 -0.59" rpy="0 0 0" />
+            <mass value="1.56695" />
+            <inertia ixx="0.182053" ixy="-2.84151e-49" ixz="0" iyy="0.182053" iyz="0" izz="0.000132366" />
+        </inertial>
+    </link>
+
+    <joint name="link9" type="fixed">
+        <origin xyz="-0.273851 -0.20572 -1.3468" rpy="-3.14159 -8.92687e-16 -1.5708" />
+        <parent link="amr_completo_sim_superior" />
+        <child link="foco_uv_2" />
+        <axis xyz="0 0 1" />
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0" />
+    </joint>
+
+    <link name="foco_uv_3">
+        <visual>
+            <origin xyz="0 0.005 -0.59" rpy="0 -0 6.26448e-48" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/foco_uv.stl" />
+            </geometry>
+            <material name="foco_uv_material">
+                <color rgba="0.670588 0.529412 0 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0.005 -0.59" rpy="0 -0 6.26448e-48" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/foco_uv.stl" />
+            </geometry>
+            <material name="foco_uv_material">
+                <color rgba="0.670588 0.529412 0 1.0" />
+            </material>
+        </collision>
+        <inertial>
+            <origin xyz="-9.55516e-20 0.005 -0.59" rpy="0 0 0" />
+            <mass value="1.56695" />
+            <inertia ixx="0.182053" ixy="2.28093e-48" ixz="0" iyy="0.182053" iyz="0" izz="0.000132366" />
+        </inertial>
+    </link>
+
+    <joint name="link10" type="fixed">
+        <origin xyz="-0.280923 0.018334 -1.3468" rpy="3.14159 7.14485e-16 1.5708" />
+        <parent link="amr_completo_sim_superior" />
+        <child link="foco_uv_3" />
+        <axis xyz="0 0 1" />
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0" />
+    </joint>
+
+    <link name="foco_uv_4">
+        <visual>
+            <origin xyz="0 0.005 -0.59" rpy="0 -0 -2.43606e-48" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/foco_uv.stl" />
+            </geometry>
+            <material name="foco_uv_material">
+                <color rgba="0.670588 0.529412 0 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0.005 -0.59" rpy="0 -0 -2.43606e-48" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/foco_uv.stl" />
+            </geometry>
+            <material name="foco_uv_material">
+                <color rgba="0.670588 0.529412 0 1.0" />
+            </material>
+        </collision>
+        <inertial>
+            <origin xyz="-9.55516e-20 0.005 -0.59" rpy="0 0 0" />
+            <mass value="1.56695" />
+            <inertia ixx="0.182053" ixy="-8.8698e-49" ixz="0" iyy="0.182053" iyz="0" izz="0.000132366" />
+        </inertial>
+    </link>
+
+    <joint name="link11" type="fixed">
+        <origin xyz="-0.0568689 0.025405 -1.3468" rpy="-3.14159 2.84276e-16 1.5708" />
+        <parent link="amr_completo_sim_superior" />
+        <child link="foco_uv_4" />
+        <axis xyz="0 0 1" />
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0" />
+    </joint>
+
+    <link name="domo_led">
+        <visual>
+            <origin xyz="0 0 0.0058717" rpy="3.14159 -0 1.37008e-47" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/domo_led.stl" />
+            </geometry>
+            <material name="domo_led_material">
+                <color rgba="0.717647 0.717647 0.717647 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0.0058717" rpy="3.14159 -0 1.37008e-47" />
+            <geometry>
+                <mesh filename="package://arlobot_description/meshes/domo_led.stl" />
+            </geometry>
+            <material name="domo_led_material">
+                <color rgba="0.717647 0.717647 0.717647 1.0" />
+            </material>
+        </collision>
+        <inertial>
+            <origin xyz="6.20612e-17 -3.17266e-17 -0.0412001" rpy="0 0 0" />
+            <mass value="0.307775" />
+            <inertia ixx="0.00215876" ixy="-5.91536e-50" ixz="0" iyy="0.00215876" iyz="0" izz="0.00394031" />
+        </inertial>
+
+    </link>
+
+    <joint name="link12" type="fixed">
+        <origin xyz="-0.16536 -0.0901572 -1.4068" rpy="2.0574e-16 5.98295e-16 1.5708" />
+        <parent link="amr_completo_sim_superior" />
+        <child link="domo_led" />
+        <axis xyz="0 0 1" />
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0" />
+    </joint>
+
+    <joint name="link7" type="fixed">
+        <origin xyz="0.0891744 0.165504 0.235" rpy="3.14159 -1.83697e-16 1.5708" />
+        <parent link="amr_completo_sim_inferior" />
+        <child link="amr_completo_sim_superior" />
+        <axis xyz="0 0 1" />
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0" />
+    </joint>
+
+
+    <link name="laser_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.1 0.1 0.07" />
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="t265_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.015 0.113 0.03" />
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="laser_joint" type="fixed">
+        <origin xyz="0 0 0.27955" rpy="0 0 0" />
+        <parent link="base_footprint" />
+        <child link="laser_link" />
+        <!-- <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/> -->
+    </joint>
+
+    <link name="d435_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.05 0.1 0.07" />
+            </geometry>
+        </visual>
+    </link>
+
+
+    <joint name="d435_joint" type="fixed">
+        <origin xyz="0 0 1" rpy="0 0 3.14" />
+        <parent link="amr_completo_sim_inferior" />
+        <child link="d435_link" />
+        <!-- <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/> -->
+    </joint>
+
+    <joint name="t265_joint" type="fixed">
+        <origin xyz="-0.2248 0 0.2459" rpy="0 0 0" />
+        <parent link="base_footprint" />
+        <child link="t265_link" />
+        <!-- <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/> -->
+    </joint>
+
+    <link name="depth_camera_link">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </link>
+
+    <joint name="depth_camera_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
+        <parent link="d435_link" />
+        <child link="depth_camera_link" />
+        <!-- <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/> -->
+    </joint>
+
+    <link name="imu_link" />
+
+    <joint name="imu_joint" type="fixed">
+        <origin xyz="0 0 1.5" rpy="0 0 0" />
+        <parent link="amr_completo_sim_inferior" />
+        <child link="imu_link" />
+        <!-- <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20" />
+        <joint_properties friction="0.0"/> -->
+    </joint>
+
+    <!-- Everything related to gazebo -->
+
+    <gazebo reference="solo_rueda_lateral">
+        <mu1>1.6</mu1>
+        <mu2>1.6</mu2>
+        <kp>500000.0</kp>
+        <kd>10.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1</maxVel>
+        <fdir1>1 0 0</fdir1>
+        <material>Gazebo/FlatBlack</material>
+    </gazebo>
+
+    <gazebo reference="solo_rueda_lateral_2">
+        <mu1>1.6</mu1>
+        <mu2>1.6</mu2>
+        <kp>500000.0</kp>
+        <kd>10.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1</maxVel>
+        <fdir1>1 0 0</fdir1>
+        <material>Gazebo/FlatBlack</material>
+    </gazebo>
+
+    <gazebo reference="caster_wheels">
+        <mu1>0.001</mu1>
+        <mu2>0.001</mu2>
+        <kp>500000.0</kp>
+        <kd>10.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1</maxVel>
+        <fdir1>1 0 0</fdir1>
+        <material>Gazebo/FlatBlack</material>
+    </gazebo>
+
+
+    <gazebo reference="caster_wheels_2">
+        <mu1>0.001</mu1>
+        <mu2>0.001</mu2>
+        <kp>500000.0</kp>
+        <kd>10.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1</maxVel>
+        <fdir1>1 0 0</fdir1>
+        <material>Gazebo/FlatBlack</material>
+    </gazebo>
+
+
+    <gazebo reference="domo_led">
+        <mu1>0.001</mu1>
+        <mu2>0.001</mu2>
+        <kp>500000.0</kp>
+        <kd>10.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1</maxVel>
+        <fdir1>1 0 0</fdir1>
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <gazebo reference="amr_completo_sim_inferior">
+        <mu1>0.001</mu1>
+        <mu2>0.001</mu2>
+        <kp>500000.0</kp>
+        <kd>10.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1</maxVel>
+        <fdir1>1 0 0</fdir1>
+        <material>Gazebo/Turquoise</material>
+    </gazebo>
+
+    <gazebo reference="amr_completo_sim_superior">
+        <mu1>0.001</mu1>
+        <mu2>0.001</mu2>
+        <kp>500000.0</kp>
+        <kd>10.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1</maxVel>
+        <fdir1>1 0 0</fdir1>
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <gazebo reference="foco_uv">
+        <mu1>0.001</mu1>
+        <mu2>0.001</mu2>
+        <kp>500000.0</kp>
+        <kd>10.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1</maxVel>
+        <fdir1>1 0 0</fdir1>
+        <material>Gazebo/Purple</material>
+    </gazebo>
+
+    <gazebo reference="foco_uv_2">
+        <mu1>0.001</mu1>
+        <mu2>0.001</mu2>
+        <kp>500000.0</kp>
+        <kd>10.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1</maxVel>
+        <fdir1>1 0 0</fdir1>
+        <material>Gazebo/Purple</material>
+    </gazebo>
+
+    <gazebo reference="foco_uv_3">
+        <mu1>0.001</mu1>
+        <mu2>0.001</mu2>
+        <kp>500000.0</kp>
+        <kd>10.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1</maxVel>
+        <fdir1>1 0 0</fdir1>
+        <material>Gazebo/Purple</material>
+    </gazebo>
+
+    <gazebo reference="foco_uv_4">
+        <mu1>0.001</mu1>
+        <mu2>0.001</mu2>
+        <kp>500000.0</kp>
+        <kd>10.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>1</maxVel>
+        <fdir1>1 0 0</fdir1>
+        <material>Gazebo/Purple</material>
+    </gazebo>
+
+    <!-- diff drive -->
+    <gazebo>
+        <plugin name="turtlebot3_burger_controller" filename="libgazebo_ros_diff_drive.so">
+            <commandTopic>cmd_vel</commandTopic>
+            <odometryTopic>odom</odometryTopic>
+            <odometryFrame>odom</odometryFrame>
+            <odometrySource>world</odometrySource>
+            <publishOdomTF>false</publishOdomTF>
+            <robotBaseFrame>base_footprint</robotBaseFrame>
+            <publishWheelTF>false</publishWheelTF>
+            <publishTf>true</publishTf>
+            <publishWheelJointState>true</publishWheelJointState>
+            <legacyMode>false</legacyMode>
+            <updateRate>30</updateRate>
+            <leftJoint>link6</leftJoint>
+            <rightJoint>link5</rightJoint>
+            <wheelSeparation>0.3902</wheelSeparation>
+            <wheelDiameter>0.156</wheelDiameter>
+            <wheelAcceleration>1</wheelAcceleration>
+            <wheelTorque>9.6</wheelTorque>
+            <rosDebugLevel>na</rosDebugLevel>
+        </plugin>
+    </gazebo>
+
+    <!-- lidar -->
+    <gazebo reference="laser_link">
+        <material>Gazebo/SkyBlue</material>
+        <sensor type="ray" name="lds_lfcd_sensor">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>false</visualize>
+            <update_rate>5.5</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>360</samples>
+                        <resolution>1</resolution>
+                        <min_angle>0.0</min_angle>
+                        <max_angle>6.28319</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.15</min>
+                    <max>12</max>
+                    <resolution>0.015</resolution>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.01</stddev>
+                </noise>
+            </ray>
+            <plugin name="gazebo_ros_lds_lfcd_controller" filename="libgazebo_ros_laser.so">
+                <topicName>scan</topicName>
+                <frameName>laser_link</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+    <!-- depth camera -->
+    <gazebo reference="d435_link">
+        <material>Gazebo/Indigo</material>
+        <sensor type="depth" name="realsense_R200">
+            <always_on>true</always_on>
+            <visualize>false</visualize>
+            <camera>
+                <horizontal_fov>1.5184</horizontal_fov>
+                <image>
+                    <width>470</width>
+                    <height>270</height>
+                    <format>R8G8B8</format>
+                </image>
+                <depth_camera></depth_camera>
+                <clip>
+                    <near>0.03</near>
+                    <far>4</far>
+                </clip>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+                <baseline>0.2</baseline>
+                <alwaysOn>true</alwaysOn>
+                <updateRate>15.0</updateRate>
+                <cameraName>d435</cameraName>
+                <frameName>depth_camera_link</frameName>
+                <imageTopicName>rgb/image_raw</imageTopicName>
+                <depthImageTopicName>depth/image_raw</depthImageTopicName>
+                <pointCloudTopicName>depth/points</pointCloudTopicName>
+                <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+                <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+                <pointCloudCutoff>0.4</pointCloudCutoff>
+                <hackBaseline>0.07</hackBaseline>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+                <CxPrime>0.0</CxPrime>
+                <Cx>0.0</Cx>
+                <Cy>0.0</Cy>
+                <focalLength>0</focalLength>
+                <hackBaseline>0</hackBaseline>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+
+    <!-- imu -->
+    <gazebo>
+        <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+            <alwaysOn>true</alwaysOn>
+            <bodyName>imu_link</bodyName>
+            <frameName>imu_link</frameName>
+            <topicName>imu</topicName>
+            <serviceName>imu_service</serviceName>
+            <gaussianNoise>0.0</gaussianNoise>
+            <updateRate>30</updateRate>
+            <imu>
+                <noise>
+                    <type>gaussian</type>
+                    <rate>
+                        <mean>0.0</mean>
+                        <stddev>2e-4</stddev>
+                        <bias_mean>0.0000075</bias_mean>
+                        <bias_stddev>0.0000008</bias_stddev>
+                    </rate>
+                    <accel>
+                        <mean>0.0</mean>
+                        <stddev>1.7e-2</stddev>
+                        <bias_mean>0.1</bias_mean>
+                        <bias_stddev>0.001</bias_stddev>
+                    </accel>
+                </noise>
+            </imu>
+        </plugin>
+    </gazebo>
+
+    <gazebo reference="link5">
+        <provideFeedback>true</provideFeedback>
+    </gazebo>
+
+    <gazebo reference="link6">
+        <provideFeedback>true</provideFeedback>
+    </gazebo>
+
+    <!-- The ft_sensor plugin -->
+    <gazebo>
+        <plugin name="ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+            <updateRate>100.0</updateRate>
+            <topicName>ft_sensor_llanta_izquierda</topicName>
+            <jointName>link5</jointName>
+        </plugin>
+    </gazebo>
+    <gazebo>
+        <plugin name="ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+            <updateRate>100.0</updateRate>
+            <topicName>ft_sensor_llanta_derecha</topicName>
+            <jointName>link6</jointName>
+        </plugin>
+    </gazebo>
+
+
+</robot>

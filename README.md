@@ -217,4 +217,4 @@ Si se tiene algún problema o duda, contactar a los correos: crisva212v@gmail.co
    [Carto]: <https://qiita.com/devemin/items/1723058cf3bac85aaa0b>
    [Realsense]: <https://github.com/IntelRealSense/realsense-ros>
    [Tutorial]: <https://www.youtube.com/watch?v=A3fJwTL2O4g>
-   [Demo]: <https://gitlab.com/espol_cidis/amr_walter/-/blob/main/DEMOS.md?ref_type=heads>
+   [Demo]: <https://github.com/empaguer/Walter_AMR/blob/master/DEMOS.md>

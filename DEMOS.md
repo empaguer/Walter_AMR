@@ -13,6 +13,7 @@ Breve explicación de la paquetería del proyecto
 - arlobot_sim_navigation: Contiene los archivos `.launch` para establecer el nodo de navegación, puede utilizar algoritos SLAM, amcl o combinados.
 - arlobot_sim_slam: Contiene los archivos `.launch` que permiten elegir un método SLAM para generar un mapa.
 - control_joy: Contiene el archivo `.launch` que permite utilizar el Joystick para controlar la velocidad lineal y de giro del robot, se llama automáticamente en modo de mapeo.
+- arlobotcar_nav: Contiene absolutamente toda la paqueteria de funcionalidad, esta es la unica carpeta en donde el usuario ejecuta codigos, nunca se llama a carpetas por separado ajenas a esta almenos que se este haciendo pruebas, esta carpeta se encarga de incluir a todas las demas carpetas para dar funcionalidad, se encuentran todos los archivos `.launch` y funcionalidades
 - arlobot_uv_launcher: contiene ciertos nodos sobre la funcionalidad del robot covibot y además los archivos `.launch` principales.
 - camera_test: es un paquete usado simplemente para hacer tests de las cámaras de intel.
 - cartographer_launcher: tiene las configuraciones de cartographer junto a archivos `.launch` que lo lanzan junto con move_base.
